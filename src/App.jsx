@@ -82,14 +82,21 @@ const App = () => {
         if (data.possible_move.length === 0) {
           if(scoreWhite === scoreBlack) alert(`What! A tie!?`)
           else (scoreWhite > scoreBlack ? !player : player) ? alert(`You have skills.`) :  alert('Too bad.')
+
           setAllowedMoves(data.possible_move)
           setBoard(data.state)
+
           if (mode === 1) setTurn(!turn ? 1 : 0)
+
           countScore(data.state)
+
+          sessionHandler(false)
         } else {
           setAllowedMoves(data.possible_move)
           setBoard(data.state)
+
           if (mode === 1) setTurn(!turn ? 1 : 0)
+
           countScore(data.state)
         }
       })
@@ -136,6 +143,7 @@ const App = () => {
 
   return (
     <div id="container">
+      {console.log(player ? "w" : "b", turn)}
       <div id="start-modal" className={started ? 'hide' : null}>
         <span onWheel={togglePlayer} onClick={togglePlayer}>{player ? <>be <label style={{ color: 'white', textShadow: "-1px -1px 0 #aaa, 1px -1px 0 #aaa, -1px 1px 0 #aaa, 1px 1px 0 #aaa" }}>white</label></> : <>be <label style={{ color: 'black' }}>black</label></>}</span>
         <br className="responsive-br"/>
@@ -154,7 +162,7 @@ const App = () => {
         ←
       </button>
       <div id="board" className={(!started ? 'hide ' : "") + (turn ? "" : 'turn')}>
-        <span className={"score " + (!player ? `black` : `white`)} id="score-2">{score(!player ? `black` : `white`)}</span>
+        <span className={"score " + ((player ? player : !player) ? `black` : `white`)} id="score-2">{score(player ? `black` : `white`)}</span>
         <table>
           <tbody>
             {
@@ -175,7 +183,7 @@ const App = () => {
             }
           </tbody>
         </table>
-        <span className={"score " + (player ? `black` : `white`) + " "} id="score-1">{score(player ? `black` : `white`)}</span>
+        <span className={"score " + (!(player ? player : !player) ? `black` : `white`) + " "} id="score-1">{score(!player ? `black` : `white`)}</span>
       </div>
       <span className=""></span>
     </div>
