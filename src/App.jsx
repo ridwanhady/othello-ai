@@ -120,10 +120,8 @@ const App = () => {
 
   const pieceColor = num => {
     if (num === 1)
-      // return !player ? 'black' : 'white'
       return 'black'
     else if (num === 2)
-      // return !player ? 'white' : 'black'
       return 'white'
     else if (num === 3)
       return null
