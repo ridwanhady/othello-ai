@@ -79,6 +79,8 @@ const App = () => {
       player: turn + player + 1
     }
 
+    console.log(params.player)
+
     fetch(API_URL + `move`, {
       method: 'POST',
       headers: {
@@ -118,8 +120,10 @@ const App = () => {
 
   const pieceColor = num => {
     if (num === 1)
+      // return !player ? 'black' : 'white'
       return 'black'
     else if (num === 2)
+      // return !player ? 'white' : 'black'
       return 'white'
     else if (num === 3)
       return null
