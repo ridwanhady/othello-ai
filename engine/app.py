@@ -58,7 +58,7 @@ def start():
     else:
         bot = Bot(board, enemy_of(current_player))
     if current_player == constant.WHITE:
-        current_player = update_board_by_bot(current_player)
+        current_player = update_board_by_bot(1)
     return jsonify(state=board.get_state(), possible_move=board.possible_moves(current_player))
 
 
